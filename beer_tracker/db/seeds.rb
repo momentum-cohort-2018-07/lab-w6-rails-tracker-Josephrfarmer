@@ -11,6 +11,6 @@
     style: Faker::Beer.style,
     abv: Faker::Beer.alcohol,
     malt_type: Faker::Beer.malts,
-    description: Faker::Lorem.sentences
+    description: Faker::NewGirl.quote
   )
 end 

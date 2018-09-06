@@ -1,19 +1,20 @@
-class BeersController < ApplicationController
-  before_action :set_beer, only: [:show, :update, :destroy]
+class Api::BeersController < ApplicationController
+  before_action :set_beer, only: [:show, :update, :destroy,]
 
   def index 
-    @beer = Beer.all 
+    @beers = Beer.all 
+    render json: @beers
   end 
   
   def show 
-
+    render json: @beer
   end  
   
   def create
     @beer = Beer.new(beer_params)
 
     if @beer.save
-      render json: @beer, status: :created, location: @beer
+      render json: @beer, status: :created
     else
       render json: @beer.errors, status: :unprocessable_entity
     end
@@ -38,8 +39,8 @@ class BeersController < ApplicationController
     end
 
    
-    def cat_params
-      params.require(:beer).permit(:name, :type, :abv, :malt_type,:description)
+    def beer_params
+      params.require(:beer).permit(:name, :style, :abv, :malt_type,:description)
     end
 
 
